@@ -12,3 +12,8 @@ dict_ = {"vcs": "mercurial"}
 def test_get_val(collection, key, default, result):
     assert get_val(collection, key, default) == result
 
+
+@pytest.mark.parametrize("error, coll, key", [(TypeError, ["dict_"], "sdf")])
+def test_get_val_error(error, coll, key):
+    with pytest.raises(error):
+        get_val(coll, key)
